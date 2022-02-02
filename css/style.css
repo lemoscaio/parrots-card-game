@@ -1,0 +1,87 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #eef9bf;
+}
+
+.topo {
+  display: flex;
+  justify-content: center;
+}
+.topo__titulo {
+  font-size: 56px;
+  color: #75b79e;
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+  max-width: 50%;
+  padding: 20px 0px;
+  margin: 20px;
+  text-transform: uppercase;
+}
+@media screen and (max-width: 700px) {
+  .topo__titulo {
+    font-size: 36px;
+    max-width: 80%;
+    margin: 10px;
+  }
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.cartas {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  max-width: 1011px;
+  margin: 0 100px;
+}
+
+.carta {
+  position: relative;
+  width: 117px;
+  height: 146px;
+}
+.carta__imagem {
+  width: 100%;
+}
+.carta__face {
+  width: 100%;
+  height: 100%;
+  background-color: #a7e9af;
+  padding: 24px 7px 22px 10px;
+  border: 1px solid #99cea8;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  transition: transform 0.5s;
+}
+.carta--verso {
+  transform: rotateY(180deg);
+}
+.carta--frente {
+  transform: rotateY(360deg);
+}
+.carta--verso img {
+  transform: scaleX(-1);
+}
+.carta:active .carta--verso {
+  transform: rotateY(0deg);
+}
+.carta:active .carta--frente {
+  transform: rotateY(180deg);
+}
+
+/*# sourceMappingURL=style.css.map */

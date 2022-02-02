@@ -1,0 +1,119 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+$cor-fundo: #eef9bf;
+$cor-carta: #a7e9af;
+$cor-borda: #99cea8;
+$cor-titulo: #75b79e;
+$font-titulo: "Roboto", sans-serif;
+
+@mixin phone-only {
+    @media screen and (max-width: 700px) {
+        @content;
+    }
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: $cor-fundo;
+}
+
+.topo {
+    display: flex;
+    justify-content: center;
+
+    &__titulo {
+        font-size: 56px;
+        color: $cor-titulo;
+        text-align: center;
+        font-family: $font-titulo;
+        font-weight: bold;
+
+        max-width: 50%;
+
+        padding: 20px 0px;
+        margin: 20px;
+
+        text-transform: uppercase;
+
+        @include phone-only() {
+            font-size: 36px;
+            max-width: 80%;
+            margin: 10px;
+        }
+    }
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.cartas {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+
+    gap: 32px;
+    max-width: 1011px;
+
+    margin: 0 100px;
+}
+
+.carta {
+    position: relative;
+
+    // background-color: $cor-carta;
+
+    width: 117px;
+    height: 146px;
+
+    &__imagem {
+        width: 100%;
+    }
+
+    &__face {
+        width: 100%;
+        height: 100%;
+
+        background-color: $cor-carta;
+
+        padding: 24px 7px 22px 10px;
+
+        border: 1px solid $cor-borda;
+        border-radius: 5px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        position: absolute;
+        transform-style: preserve-3d;
+        backface-visibility: hidden;
+
+        transition: transform 0.5s;
+    }
+
+    &--verso {
+        transform: rotateY(180deg);
+    }
+
+    &--frente {
+        transform: rotateY(360deg);
+    }
+
+    &--verso img {
+        transform: scaleX(-1);
+    }
+
+    &:active &--verso {
+        transform: rotateY(0deg);
+    }
+
+    &:active &--frente {
+        transform: rotateY(180deg);
+    }
+}
