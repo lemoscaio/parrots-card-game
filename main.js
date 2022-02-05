@@ -1,51 +1,130 @@
 let cartas = ["bobrossparrot", "explodyparrot", "fiestaparrot", "metalparrot", "revertitparrot", "tripletsparrot", "unicornparrot"];
 
-let cartasAtuais = []
-let cartasEmbaralhadas = []
-let quantidadeCartas = "14"
-// let quantidadeCartas = ""
+let cartasAtuais = [];
+let cartasEmbaralhadas = [];
+let quantidadeCartas = parseInt("4");
+// let quantidadeCartas = "";
 
 function perguntarQuantidadeCartas() {
-    quantidadeCartas = prompt("Quantas cartas você deseja? (Números pares de 4 a 14)")
+    quantidadeCartas = parseInt(prompt("Quantas cartas você deseja? (Números pares de 4 a 14)"));
 
-    return quantidadeCartas
+    return quantidadeCartas;
 }
 
 function calcularCartas() {
 
-    for (let i = 0; i < quantidadeCartas/2; i++) {
+    for (let i = 0; i < quantidadeCartas / 2; i++) {
         cartasAtuais.push(cartas[i]);
     }
-    cartasAtuais.sort(comparador)
+    cartasAtuais.sort(comparador);
 
-    adicionarCartas(cartasAtuais)
+    adicionarCartas(cartasAtuais);
 }
 
 function comparador() {
-    return Math.random() - 0.5
+    return Math.random() - 0.5;
 }
 
 // perguntarQuantidadeCartas()
-calcularCartas()
-calcularCartas()
+calcularCartas();
+calcularCartas();
 
 function adicionarCartas(cartasAtuais) {
 
     const cartasSection = document.querySelector(".cartas");
 
     while (cartasAtuais.length >= 1) {
-    
-        cartasSection.innerHTML += `<article class="carta">
+        let cartaParaAdicionar = cartasAtuais.pop();
+
+        cartasSection.innerHTML += `<article class="carta ${cartaParaAdicionar}  " onclick="virarCarta(this)">
                     <div class="carta__face carta--frente">
                         <img class="carta__imagem" src="imagens/front.png" alt="Frente da Carta">
                     </div>
                     <div class="carta__face carta--verso">
-                        <img src="imagens/${cartasAtuais.pop()}.gif" alt="Verso: Metal Parrot" class="carta__imagem">
+                        <img src="imagens/${cartaParaAdicionar}.gif" alt="Verso: Metal Parrot" class="carta__imagem">
                     </div>
-                </article>`
+                </article>`;
 
-                console.log(cartasAtuais)
-    
+        // console.log(cartasAtuais);
+
     }
 
+}
+
+function virarCarta(carta) {
+    carta.classList.add("selecionada");
+
+    const cartasSelecionadasEl = document.querySelectorAll(".selecionada");
+    let quantidadeSelecionadas = cartasSelecionadasEl.length;
+
+    if (quantidadeSelecionadas === 2) {
+        setTimeout(verificarCarta, 500);
+    }
+}
+
+function verificarCarta() {
+    const cartasSelecionadasEl = document.querySelectorAll(".selecionada");
+    let quantidadeSelecionadas = cartasSelecionadasEl.length;
+
+    const carta1 = cartasSelecionadasEl[0];
+    const carta2 = cartasSelecionadasEl[1];
+
+    console.log(quantidadeSelecionadas);
+    console.log(cartasSelecionadasEl);
+
+    if (quantidadeSelecionadas === 2) {
+        console.log('duas cartas selecionadas')
+
+        if (carta1.classList[1] === carta2.classList[1]) {
+            carta1.classList.add("acertada");
+            carta1.classList.remove("selecionada");
+            carta2.classList.add("acertada");
+            carta2.classList.remove("selecionada");
+
+            verificarFim();
+        } else {
+            carta1.classList.remove("selecionada");
+            carta2.classList.remove("selecionada");
+        }
+
+
+
+    } else if (quantidadeSelecionadas === 1) {
+        console.log("uma carta selecionada");
+    }
+
+}
+
+function verificarFim() {
+
+    const cartasAcertadasEl = document.querySelectorAll(".acertada");
+    let quantidadeAcertadas = cartasAcertadasEl.length;
+
+    console.log("acertadas");
+    console.log(quantidadeAcertadas);
+    console.log("quantidadecartas");
+    console.log(quantidadeCartas);
+
+    if (quantidadeCartas === quantidadeAcertadas) {
+        alert("fim de jogo");
+        
+        perguntarReinicio();
+    }
+}
+
+function perguntarReinicio() {
+    const resposta = prompt("Gostaria de jogar de novo? SIM ou NÃO")
+
+    if (resposta === "SIM") {
+        
+        const cartasAcertadasEl = document.querySelectorAll(".acertada");
+        let quantidadeAcertadas = cartasAcertadasEl.length;
+
+        for (let i = 0 ; i < quantidadeAcertadas ; i++) {
+            cartasAcertadasEl[i].classList.remove("acertada")
+        }
+
+    } else {
+        console.log("Obrigado e volte sempre!")
+    }
 }

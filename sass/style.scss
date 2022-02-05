@@ -109,11 +109,19 @@ body {
         transform: scaleX(-1);
     }
 
-    &:active &--verso {
+    .acertada &--verso , .selecionada &--verso {
         transform: rotateY(0deg);
     }
 
-    &:active &--frente {
+    .acertada &--frente , .selecionada &--frente {
         transform: rotateY(180deg);
     }
+
+    // &:active &--verso {
+    //     transform: rotateY(0deg);
+    // }
+
+    // &:active &--frente {
+    //     transform: rotateY(180deg);
+    // }
 }

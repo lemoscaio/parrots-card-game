@@ -77,10 +77,10 @@ body {
 .carta--verso img {
   transform: scaleX(-1);
 }
-.carta:active .carta--verso {
+.acertada .carta--verso, .selecionada .carta--verso {
   transform: rotateY(0deg);
 }
-.carta:active .carta--frente {
+.acertada .carta--frente, .selecionada .carta--frente {
   transform: rotateY(180deg);
 }
 
