@@ -4,14 +4,16 @@ let cartasAtuais = [];
 let cartasEmbaralhadas = [];
 // let quantidadeCartas = parseInt("4");
 let quantidadeCartas = "";
+let quantidadeJogadas = 0;
+let resposta;
 
 function perguntarQuantidadeCartas() {
     quantidadeCartas = parseInt(prompt("Quantas cartas você deseja? (Números pares de 4 a 14)"));
 
-    while(quantidadeCartas % 2 != 0 || quantidadeCartas == 2 || quantidadeCartas == 0) {
+    while (quantidadeCartas % 2 != 0 || quantidadeCartas == 2 || quantidadeCartas == 0) {
         quantidadeCartas = parseInt(prompt("Quantas cartas você deseja? (Números pares de 4 a 14)"));
     }
-    
+
     return quantidadeCartas;
 }
 
@@ -51,6 +53,8 @@ function adicionarCartas(cartasAtuais) {
 }
 
 function virarCarta(carta) {
+    quantidadeJogadas += 1;
+
     carta.classList.add("selecionada");
 
     const cartasSelecionadasEl = document.querySelectorAll(".selecionada");
@@ -105,29 +109,49 @@ function verificarFim() {
     console.log(quantidadeCartas);
 
     if (quantidadeCartas === quantidadeAcertadas) {
-        alert("Você ganhou em X jogadas!");
+        alert(`Você ganhou em ${quantidadeJogadas} jogadas!`);
 
         perguntarReinicio();
     }
 }
 
 function perguntarReinicio() {
-    const resposta = prompt("Gostaria de jogar de novo? SIM ou NÃO")
+    resposta = prompt("Gostaria de jogar de novo? 's' para SIM ou 'n' para NÃO");
 
-    if (resposta === "SIM") {
+    console.log(resposta)
+
+    while (resposta !== "s" && resposta !== "n") {
+        resposta = prompt("Responda APENAS 's' ou 'n'");
+        console.log(resposta)
+    }
+
+    if (resposta === "s") {
 
         const cartasAcertadasEl = document.querySelectorAll(".acertada");
         let quantidadeAcertadas = cartasAcertadasEl.length;
 
         for (let i = 0; i < quantidadeAcertadas; i++) {
-            cartasAcertadasEl[i].classList.remove("acertada")
+            cartasAcertadasEl[i].classList.remove("acertada");
         }
 
-    } else {
-        alert("Obrigado e volte sempre!")
+        reiniciarJogo();
+
+    } else if (resposta === "n") {
+        alert("Obrigado e volte sempre! Recarregue a página caso mude de ideia :D")
     }
 }
 
-perguntarQuantidadeCartas()
-calcularCartas();
-calcularCartas();
+function reiniciarJogo() {
+    const cartasSection = document.querySelector(".cartas");
+
+    cartasSection.innerHTML = "";
+
+    quantidadeJogadas = 0;
+
+    perguntarQuantidadeCartas();
+    calcularCartas();
+    calcularCartas();
+}
+
+// Inicialização
+reiniciarJogo()
