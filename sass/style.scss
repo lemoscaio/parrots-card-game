@@ -23,11 +23,14 @@ body {
 .topo {
     display: flex;
     justify-content: center;
+    position: relative;
+    align-items: center;
 
     &__titulo {
         font-size: 56px;
         color: $cor-titulo;
         text-align: center;
+        
         font-family: $font-titulo;
         font-weight: bold;
 
@@ -43,6 +46,26 @@ body {
             max-width: 80%;
             margin: 10px;
         }
+    }
+
+    &__cronometro-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        width: 180px;
+
+        position: absolute;
+        right: 70px;
+
+        font-family: $font-titulo;
+        font-weight: 900;
+        font-size: 30px;
+        color: $cor-titulo;   
+    }
+
+    &__cronometro-timer {
+        
     }
 }
 

@@ -10,6 +10,8 @@ body {
 .topo {
   display: flex;
   justify-content: center;
+  position: relative;
+  align-items: center;
 }
 .topo__titulo {
   font-size: 56px;
@@ -29,7 +31,18 @@ body {
     margin: 10px;
   }
 }
-
+.topo__cronometro-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 180px;
+  position: absolute;
+  right: 70px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  font-size: 30px;
+  color: #75b79e;
+}
 .container {
   display: flex;
   justify-content: center;
