@@ -22,6 +22,9 @@ function calcularCartas() {
     for (let i = 0; i < quantidadeCartas / 2; i++) {
         cartasAtuais.push(cartas[i]);
     }
+    for (let i = 0; i < quantidadeCartas / 2; i++) {
+        cartasAtuais.push(cartas[i]);
+    }
     cartasAtuais.sort(comparador);
 
     adicionarCartas(cartasAtuais);
@@ -49,7 +52,6 @@ function adicionarCartas(cartasAtuais) {
                     </div>
                 </article>`;
     }
-
 }
 
 function virarCarta(carta) {
@@ -149,7 +151,6 @@ function reiniciarJogo() {
     quantidadeJogadas = 0;
 
     perguntarQuantidadeCartas();
-    calcularCartas();
     calcularCartas();
 }
 
