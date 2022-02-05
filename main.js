@@ -2,12 +2,16 @@ let cartas = ["bobrossparrot", "explodyparrot", "fiestaparrot", "metalparrot", "
 
 let cartasAtuais = [];
 let cartasEmbaralhadas = [];
-let quantidadeCartas = parseInt("4");
-// let quantidadeCartas = "";
+// let quantidadeCartas = parseInt("4");
+let quantidadeCartas = "";
 
 function perguntarQuantidadeCartas() {
     quantidadeCartas = parseInt(prompt("Quantas cartas você deseja? (Números pares de 4 a 14)"));
 
+    while(quantidadeCartas % 2 != 0 || quantidadeCartas == 2 || quantidadeCartas == 0) {
+        quantidadeCartas = parseInt(prompt("Quantas cartas você deseja? (Números pares de 4 a 14)"));
+    }
+    
     return quantidadeCartas;
 }
 
@@ -25,9 +29,7 @@ function comparador() {
     return Math.random() - 0.5;
 }
 
-// perguntarQuantidadeCartas()
-calcularCartas();
-calcularCartas();
+
 
 function adicionarCartas(cartasAtuais) {
 
@@ -44,9 +46,6 @@ function adicionarCartas(cartasAtuais) {
                         <img src="imagens/${cartaParaAdicionar}.gif" alt="Verso: Metal Parrot" class="carta__imagem">
                     </div>
                 </article>`;
-
-        // console.log(cartasAtuais);
-
     }
 
 }
@@ -58,7 +57,7 @@ function virarCarta(carta) {
     let quantidadeSelecionadas = cartasSelecionadasEl.length;
 
     if (quantidadeSelecionadas === 2) {
-        setTimeout(verificarCarta, 500);
+        setTimeout(verificarCarta, 1000);
     }
 }
 
@@ -106,8 +105,8 @@ function verificarFim() {
     console.log(quantidadeCartas);
 
     if (quantidadeCartas === quantidadeAcertadas) {
-        alert("fim de jogo");
-        
+        alert("Você ganhou em X jogadas!");
+
         perguntarReinicio();
     }
 }
@@ -116,15 +115,19 @@ function perguntarReinicio() {
     const resposta = prompt("Gostaria de jogar de novo? SIM ou NÃO")
 
     if (resposta === "SIM") {
-        
+
         const cartasAcertadasEl = document.querySelectorAll(".acertada");
         let quantidadeAcertadas = cartasAcertadasEl.length;
 
-        for (let i = 0 ; i < quantidadeAcertadas ; i++) {
+        for (let i = 0; i < quantidadeAcertadas; i++) {
             cartasAcertadasEl[i].classList.remove("acertada")
         }
 
     } else {
-        console.log("Obrigado e volte sempre!")
+        alert("Obrigado e volte sempre!")
     }
 }
+
+perguntarQuantidadeCartas()
+calcularCartas();
+calcularCartas();
