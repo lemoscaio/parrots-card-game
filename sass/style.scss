@@ -36,7 +36,7 @@ body {
         font-size: 56px;
         color: $cor-titulo;
         text-align: center;
-        
+
         font-family: $font-titulo;
         font-weight: bold;
 
@@ -67,7 +67,7 @@ body {
         font-family: $font-titulo;
         font-weight: 900;
         font-size: 30px;
-        color: $cor-titulo;   
+        color: $cor-titulo;
 
         @include tablet-only() {
             flex-direction: column;
@@ -86,10 +86,16 @@ body {
         }
     }
 
-    &__topo__cronometro-label::after {
+    &__cronometro-label::after {
         content: ":";
-    }
 
+        @include phone-only() {
+            content: "";
+        }
+        @include tablet-only() {
+            content: "";
+        }
+    }
 }
 
 .container {
@@ -112,8 +118,6 @@ body {
 
 .carta {
     position: relative;
-
-    // background-color: $cor-carta;
 
     width: 117px;
     height: 146px;
@@ -140,35 +144,35 @@ body {
         position: absolute;
         transform-style: preserve-3d;
         backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
 
         transition: transform 0.5s;
     }
 
     &--verso {
         transform: rotateY(180deg);
+        -webkit-transform: rotateY(180deg);
     }
 
     &--frente {
         transform: rotateY(360deg);
+        -webkit-transform: rotateY(360deg);
     }
 
     &--verso img {
         transform: scaleX(-1);
+        -webkit-transform: scaleX(-1);
     }
 
-    .acertada &--verso , .selecionada &--verso {
+    .acertada &--verso,
+    .selecionada &--verso {
         transform: rotateY(0deg);
+        -webkit-transform: rotateY(0deg);
     }
 
-    .acertada &--frente , .selecionada &--frente {
+    .acertada &--frente,
+    .selecionada &--frente {
         transform: rotateY(180deg);
+        -webkit-transform: rotateY(180deg);
     }
-
-    // &:active &--verso {
-    //     transform: rotateY(0deg);
-    // }
-
-    // &:active &--frente {
-    //     transform: rotateY(180deg);
-    // }
 }

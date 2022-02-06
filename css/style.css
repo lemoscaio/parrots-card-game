@@ -60,8 +60,18 @@ body {
     width: 100%;
   }
 }
-.topo__topo__cronometro-label::after {
+.topo__cronometro-label::after {
   content: ":";
+}
+@media screen and (max-width: 700px) {
+  .topo__cronometro-label::after {
+    content: "";
+  }
+}
+@media screen and (max-width: 1000px) {
+  .topo__cronometro-label::after {
+    content: "";
+  }
 }
 
 .container {
@@ -101,22 +111,28 @@ body {
   position: absolute;
   transform-style: preserve-3d;
   backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
   transition: transform 0.5s;
 }
 .carta--verso {
   transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
 }
 .carta--frente {
   transform: rotateY(360deg);
+  -webkit-transform: rotateY(360deg);
 }
 .carta--verso img {
   transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
 }
 .acertada .carta--verso, .selecionada .carta--verso {
   transform: rotateY(0deg);
+  -webkit-transform: rotateY(0deg);
 }
 .acertada .carta--frente, .selecionada .carta--frente {
   transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
 }
 
 /*# sourceMappingURL=style.css.map */
