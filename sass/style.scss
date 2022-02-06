@@ -62,16 +62,29 @@ body {
         font-weight: 900;
         font-size: 30px;
         color: $cor-titulo;   
+
+        @include phone-only() {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            flex-direction: column;
+            align-items: flex-end;
+
+            font-size: 24px;
+            width: 100%;
+        }
     }
 
-    &__cronometro-timer {
-        
+    &__topo__cronometro-label::after {
+        content: ":";
     }
+
 }
 
 .container {
     display: flex;
     justify-content: center;
+    margin-bottom: 80px;
 }
 
 .cartas {

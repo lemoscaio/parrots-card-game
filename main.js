@@ -44,11 +44,11 @@ function adicionarCartas(cartasAtuais) {
     while (cartasAtuais.length >= 1) {
         let cartaParaAdicionar = cartasAtuais.pop();
 
-        cartasSection.innerHTML += `<article class="carta ${cartaParaAdicionar} selecionada" onclick="virarCarta(this)">
-                    <div class="carta__face carta--frente">
+        cartasSection.innerHTML += `<article class="carta ${cartaParaAdicionar} selecionada" data-identifier="card" onclick="virarCarta(this)">
+                    <div class="carta__face carta--frente" data-identifier="front-face">
                         <img class="carta__imagem" src="imagens/front.png" alt="Frente da Carta">
                     </div>
-                    <div class="carta__face carta--verso">
+                    <div class="carta__face carta--verso" data-identifier="back-face">
                         <img src="imagens/${cartaParaAdicionar}.gif" alt="Verso: Metal Parrot" class="carta__imagem">
                     </div>
                 </article>`;
