@@ -43,6 +43,12 @@ body {
   font-size: 30px;
   color: #75b79e;
 }
+@media screen and (max-width: 1000px) {
+  .topo__cronometro-container {
+    flex-direction: column;
+    right: 10px;
+  }
+}
 @media screen and (max-width: 700px) {
   .topo__cronometro-container {
     position: fixed;

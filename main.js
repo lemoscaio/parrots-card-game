@@ -5,6 +5,7 @@ let cartasEmbaralhadas = [];
 // let quantidadeCartas = parseInt("4");
 let quantidadeCartas = "";
 let quantidadeJogadas = 0;
+let cartasViradas = 0;
 let resposta;
 let intervalo;
 const cronometroEl = document.querySelector(".topo__cronometro-timer")
@@ -56,15 +57,19 @@ function adicionarCartas(cartasAtuais) {
 }
 
 function virarCarta(carta) {
+    cartasViradas += 1;
     quantidadeJogadas += 1;
 
-    carta.classList.add("selecionada");
+    if (cartasViradas < 3) {
 
-    const cartasSelecionadasEl = document.querySelectorAll(".selecionada");
-    let quantidadeSelecionadas = cartasSelecionadasEl.length;
+        carta.classList.add("selecionada");
 
-    if (quantidadeSelecionadas === 2) {
-        setTimeout(verificarCarta, 1000);
+        const cartasSelecionadasEl = document.querySelectorAll(".selecionada");
+        let quantidadeSelecionadas = cartasSelecionadasEl.length;
+
+        if (quantidadeSelecionadas === 2) {
+            setTimeout(verificarCarta, 1000);
+        }
     }
 }
 
@@ -83,6 +88,9 @@ function verificarCarta() {
             carta2.classList.add("acertada");
             carta2.classList.remove("selecionada");
 
+            carta1.removeAttribute("onclick");
+            carta2.removeAttribute("onclick");
+
             verificarFim();
 
         }
@@ -91,6 +99,8 @@ function verificarCarta() {
             carta2.classList.remove("selecionada");
         }
     }
+
+    cartasViradas = 0
 }
 
 function verificarFim() {
@@ -138,17 +148,18 @@ function reiniciarJogo() {
 
     cartasSection.innerHTML = "";
 
+    cartasViradas = 0;
     quantidadeJogadas = 0;
 
     perguntarQuantidadeCartas();
     calcularCartas();
-    setTimeout(tirarSelecaoTodasCartas,500);
-    setTimeout(cronometro,500);
+    setTimeout(tirarSelecaoTodasCartas, 500);
+    setTimeout(cronometro, 500);
 }
 
 function cronometro() {
     cronometroEl.innerText = 0
-    intervalo = setInterval(incrementarCronometro,1000)
+    intervalo = setInterval(incrementarCronometro, 1000)
 }
 
 function incrementarCronometro() {
@@ -165,4 +176,4 @@ function tirarSelecaoTodasCartas() {
 }
 
 // Inicialização
-setTimeout(reiniciarJogo,50)
+setTimeout(reiniciarJogo, 50)

@@ -12,6 +12,12 @@ $font-titulo: "Roboto", sans-serif;
     }
 }
 
+@mixin tablet-only {
+    @media screen and (max-width: 1000px) {
+        @content;
+    }
+}
+
 * {
     box-sizing: border-box;
 }
@@ -62,6 +68,11 @@ body {
         font-weight: 900;
         font-size: 30px;
         color: $cor-titulo;   
+
+        @include tablet-only() {
+            flex-direction: column;
+            right: 10px;
+        }
 
         @include phone-only() {
             position: fixed;
