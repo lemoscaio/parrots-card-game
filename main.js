@@ -58,10 +58,10 @@ function adicionarCartas(cartasAtuais) {
 
 function virarCarta(carta) {
     cartasViradas += 1;
-    quantidadeJogadas += 1;
-
+    
     if (cartasViradas < 3) {
-
+        
+        quantidadeJogadas += 1;
         carta.classList.add("selecionada");
 
         const cartasSelecionadasEl = document.querySelectorAll(".selecionada");
@@ -136,7 +136,7 @@ function perguntarReinicio() {
             cartasAcertadasEl[i].classList.remove("acertada");
         }
 
-        reiniciarJogo();
+        setTimeout(reiniciarJogo, 50);
 
     } else if (resposta === "n") {
         alert("Obrigado e volte sempre! Recarregue a página caso mude de ideia :D")
