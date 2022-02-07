@@ -92,6 +92,7 @@ body {
 
 .carta {
   position: relative;
+  cursor: pointer;
   width: 117px;
   height: 146px;
 }
@@ -133,6 +134,10 @@ body {
 .acertada .carta--frente, .selecionada .carta--frente {
   transform: rotateY(180deg);
   -webkit-transform: rotateY(180deg);
+}
+
+.selecionada {
+  pointer-events: none;
 }
 
 /*# sourceMappingURL=style.css.map */

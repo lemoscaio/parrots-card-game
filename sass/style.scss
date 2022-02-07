@@ -119,6 +119,8 @@ body {
 .carta {
     position: relative;
 
+    cursor: pointer;
+
     width: 117px;
     height: 146px;
 
@@ -175,4 +177,8 @@ body {
         transform: rotateY(180deg);
         -webkit-transform: rotateY(180deg);
     }
+}
+
+.selecionada {
+    pointer-events:  none;
 }
