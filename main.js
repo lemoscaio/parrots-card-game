@@ -1,5 +1,8 @@
 let cartas = ["bobrossparrot", "explodyparrot", "fiestaparrot", "metalparrot", "revertitparrot", "tripletsparrot", "unicornparrot"];
 
+const MAXIMOCARTAS = 14;
+const MINIMOCARTAS = 4;
+
 let cartasAtuais = [];
 let cartasEmbaralhadas = [];
 // let quantidadeCartas = parseInt("4");
@@ -14,7 +17,7 @@ cronometroEl.innerHTML = 0;
 function perguntarQuantidadeCartas() {
     quantidadeCartas = parseInt(prompt("Quantas cartas você deseja? (Números pares de 4 a 14)"));
 
-    while (quantidadeCartas % 2 != 0 || quantidadeCartas == 2 || quantidadeCartas == 0 || quantidadeCartas > 14) {
+    while (quantidadeCartas % 2 != 0 || MINIMOCARTAS > quantidadeCartas ||quantidadeCartas > MAXIMOCARTAS) {
         quantidadeCartas = parseInt(prompt("Quantas cartas você deseja? (Números pares de 4 a 14)"));
     }
 
@@ -61,14 +64,13 @@ function virarCarta(carta) {
     
     if (cartasViradas < 3) {
         
-        quantidadeJogadas += 1;
         carta.classList.add("selecionada");
 
         const cartasSelecionadasEl = document.querySelectorAll(".selecionada");
         let quantidadeSelecionadas = cartasSelecionadasEl.length;
 
         if (quantidadeSelecionadas === 2) {
-            setTimeout(verificarCarta, 1000);
+            verificarCarta();
         }
     }
 }
@@ -79,6 +81,8 @@ function verificarCarta() {
 
     const carta1 = cartasSelecionadasEl[0];
     const carta2 = cartasSelecionadasEl[1];
+
+    quantidadeJogadas += 1;
 
     if (quantidadeSelecionadas === 2) {
 
@@ -91,16 +95,17 @@ function verificarCarta() {
             carta1.removeAttribute("onclick");
             carta2.removeAttribute("onclick");
 
-            verificarFim();
+            setTimeout(verificarFim,1000);
+            cartasViradas = 0
 
         }
         else {
-            carta1.classList.remove("selecionada");
-            carta2.classList.remove("selecionada");
+            setTimeout (() => {carta1.classList.remove("selecionada")}, 1000);
+            setTimeout (() => {carta2.classList.remove("selecionada")}, 1000);
+            setTimeout(() => {cartasViradas = 0},1000);
         }
     }
-
-    cartasViradas = 0
+    
 }
 
 function verificarFim() {
